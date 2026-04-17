@@ -1,59 +1,87 @@
-# Bosko
+# 🌿 Bosko Colombia - Ecoturismo y Aventura
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+¡Bienvenido al proyecto de **Bosko Colombia**! Una landing page moderna, rápida y atractiva diseñada para promocionar experiencias únicas de ecoturismo en el corazón del Eje Cafetero.
 
-## Development server
+## 📋 Sobre el Proyecto
 
-To start a local development server, run:
+Bosko es una plataforma dedicada a conectar a los viajeros con la naturaleza de Colombia. Este sitio web sirve como vitrina para los tours más emblemáticos (Valle del Cocora, Filandia, Salento, etc.) y permite a los usuarios reservar directamente a través de WhatsApp.
 
+### ✨ Características Principales
+- **Diseño Premium**: Interfaces fluidas y modernas con estética de "Glassmorphism" y animaciones suaves.
+- **Reserva Directa**: Integración con WhatsApp para reservas personalizadas según el tour seleccionado.
+- **Totalmente Responsivo**: Optimizado para dispositivos móviles, tablets y desktops.
+- **SEO Ready**: Estructura semántica para mejor posicionamiento en buscadores.
+- **Despliegue Automático**: Integración continua con GitHub Actions.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Core**: [Angular v21+](https://angular.io/)
+- **Estilos**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Iconografía**: SVG personalizados.
+- **Despliegue**: GitHub Pages.
+
+---
+
+## 🚀 Inicio Rápido
+
+### Requisitos Previos
+
+Asegúrate de tener instaladas las siguientes herramientas:
+- **Node.js**: Versión 20 o superior.
+- **npm**: Versión 10 o superior (incluido con Node).
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/Moreno716/bosko-colombia.git
+cd bosko-colombia
+```
+
+### 2. Instalar dependencias
+```bash
+npm install
+```
+
+### 3. Levantar el servidor de desarrollo
 ```bash
 ng serve
 ```
+El proyecto estará disponible en `http://localhost:4200`.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 📦 Construcción y Despliegue
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Generar la versión de producción
 ```bash
-ng generate component component-name
+npm run build
 ```
+Esto generará los archivos optimizados en la carpeta `dist/bosko/browser`.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 🚀 Despliegue Automático (GitHub Actions)
+Este proyecto cuenta con un flujo de trabajo automatizado. Cada vez que realices un `push` a la rama `main`, GitHub Actions:
+1. Instalará las dependencias.
+2. Compilará el proyecto en modo producción.
+3. Desplegará automáticamente los cambios en:
+   👉 **[https://moreno716.github.io/bosko-colombia/](https://moreno716.github.io/bosko-colombia/)**
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## 📁 Estructura del Proyecto
 
-To build the project run:
+- `src/app/app.html`: Estructura principal de la landing page.
+- `src/styles.css`: Estilos globales y configuración de variables de Tailwind.
+- `.github/workflows/deploy.yml`: Configuración del pipeline de CI/CD.
+- `public/`: Contiene assets estáticos como imágenes y logos.
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## ✉️ Contacto
 
-## Running unit tests
+Si tienes dudas o quieres colaborar, puedes contactarnos a través de:
+- **Instagram**: [@boskoecoturismo](https://www.instagram.com/boskoecoturismo/)
+- **Web**: [bosko.com](https://moreno716.github.io/bosko-colombia/)
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+*Hecho con ❤️ para la biodiversidad de Colombia.*
