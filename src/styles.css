@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0a3b1c;
+  --color-accent: #12807b;
+  --color-secondary: #4c8030;
+  --color-warm: #c47d33;
+  --color-app-bg: #f4f0e4;
+
+  --font-heading: "Poppins", "Montserrat", sans-serif;
+  --font-body: "Open Sans", "Roboto", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-app-bg text-[#333] font-body;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-primary;
+  }
+}
+
+.glass-nav {
+  @apply bg-white/80 backdrop-blur-md border-b border-primary/10;
+}
+
+.btn-primary {
+  @apply bg-primary text-white px-8 py-3 rounded-full hover:bg-secondary transition-all duration-300 font-bold text-center inline-block;
+}
+
+.btn-outline {
+  @apply border-2 border-primary text-primary px-8 py-3 rounded-full hover:bg-primary hover:text-white transition-all duration-300 font-bold text-center inline-block;
+}
+
+.btn-warm {
+  @apply bg-warm text-white px-8 py-3 rounded-full hover:opacity-90 transition-all duration-300 font-bold text-center inline-block;
+}
