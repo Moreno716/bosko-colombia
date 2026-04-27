@@ -31,13 +31,13 @@
 }
 
 .btn-primary {
-  @apply bg-primary text-white px-8 py-3 rounded-full hover:bg-secondary transition-all duration-300 font-bold text-center inline-block;
+  @apply bg-primary text-white px-8 py-3 rounded-full hover:bg-secondary transition-all duration-300 font-bold text-center inline-flex items-center justify-center gap-2;
 }
 
 .btn-outline {
-  @apply border-2 border-primary text-primary px-8 py-3 rounded-full hover:bg-primary hover:text-white transition-all duration-300 font-bold text-center inline-block;
+  @apply border-2 border-primary text-primary px-8 py-3 rounded-full hover:bg-primary hover:text-white transition-all duration-300 font-bold text-center inline-flex items-center justify-center gap-2;
 }
 
 .btn-warm {
-  @apply bg-warm text-white px-8 py-3 rounded-full hover:opacity-90 transition-all duration-300 font-bold text-center inline-block;
+  @apply bg-warm text-white px-8 py-3 rounded-full hover:opacity-90 transition-all duration-300 font-bold text-center inline-flex items-center justify-center gap-2;
 }
