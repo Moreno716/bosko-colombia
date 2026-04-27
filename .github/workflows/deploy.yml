@@ -24,8 +24,8 @@ jobs:
       - name: Build Angular
         run: npm run build -- --base-href="https://moreno716.github.io/bosko-colombia/"
 
-      - name: Deploy
-        uses: angular-cli-ghpages/actions@v1
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          build_dir: dist/bosko/browser
+          publish_dir: dist/bosko/browser
