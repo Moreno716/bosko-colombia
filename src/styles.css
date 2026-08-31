@@ -41,3 +41,29 @@
 .btn-warm {
   @apply bg-warm text-white px-8 py-3 rounded-full hover:opacity-90 transition-all duration-300 font-bold text-center inline-flex items-center justify-center gap-2;
 }
+
+/* Modal body lock */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Review cards slide-in animation */
+@keyframes review-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.review-card-animated {
+  opacity: 0;
+  animation: review-in 0.45s ease forwards;
+}
+.review-card-animated:nth-child(1) { animation-delay: 0ms; }
+.review-card-animated:nth-child(2) { animation-delay: 90ms; }
+.review-card-animated:nth-child(3) { animation-delay: 180ms; }
+.review-card-animated:nth-child(4) { animation-delay: 270ms; }
