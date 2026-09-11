@@ -213,6 +213,20 @@ export class App {
         es: "El Valle de la Carbonera es el mejor secreto natural de Colombia: el bosque de palmas de cera más grande y mejor conservado del planeta. A diferencia del más visitado Cocora, La Carbonera ofrece una travesía íntima y fuera de los caminos trillados a través de densos palmares que se elevan hacia el cielo. El silencio aquí es profundo, roto solo por el canto de los pájaros y el susurro de las hojas con la brisa. Menos visitantes, naturaleza prístina y una sensación inolvidable de soledad y asombro. Duración: 4–6 horas | Dificultad: Moderada.",
         fr: "La Vallée de la Carbonera est le meilleur secret naturel de Colombie : la plus grande et la mieux conservée forêt de palmiers à cire de la planète. Contrairement au Cocora plus fréquenté, La Carbonera offre un voyage intime hors des sentiers battus à travers de denses palmeraies s'élevant vers le ciel. Le silence y est profond, brisé seulement par le chant des oiseaux et le bruissement des feuilles dans la brise. Moins de visiteurs, une nature préservée et un inoubliable sentiment de solitude et d'émerveillement. Durée : 4–6 h | Difficulté : Modérée."
       }
+    },
+    {
+      name: 'Laguna del Otún',
+      images: ['valle-del-cocora.png', 'barbas-bremen.png', 'carbonera.png'],
+      description: {
+        en: 'Trek to one of the most spectacular high-altitude lakes in the Colombian Andes, surrounded by páramo.',
+        es: 'Sube hasta una de las lagunas de alta montaña más espectaculares de los Andes colombianos, rodeada de páramo.',
+        fr: "Randonnée vers l'un des lacs d'altitude les plus spectaculaires des Andes colombiennes, entouré de páramo."
+      },
+      detail: {
+        en: "Laguna del Otún is a breathtaking high-altitude lake nestled in the heart of the Los Nevados National Natural Park, at over 3,900 metres above sea level. The trail winds through cloud forest and open páramo — Colombia's unique high-altitude ecosystem — where frailejones (giant rosette plants) stretch across the hillsides. The lake reflects the surrounding peaks and is a sanctuary for Andean wildlife. A challenging but deeply rewarding journey for nature lovers and adventure seekers alike. Duration: Full day | Difficulty: Demanding. (Description coming soon — contact us for details.)",
+        es: "La Laguna del Otún es un lago de alta montaña de una belleza impresionante, ubicado en el corazón del Parque Nacional Natural Los Nevados, a más de 3.900 metros sobre el nivel del mar. El sendero atraviesa bosque nublado y páramo abierto — el ecosistema único de alta montaña colombiana — donde los frailejones se extienden por las laderas. El lago refleja los picos circundantes y es un santuario de vida silvestre andina. Un recorrido exigente pero profundamente gratificante para amantes de la naturaleza y aventureros. Duración: Día completo | Dificultad: Exigente. (Descripción en construcción — contáctanos para más detalles.)",
+        fr: "La Laguna del Otún est un lac d'altitude d'une beauté à couper le souffle, niché au cœur du Parc National Naturel Los Nevados, à plus de 3 900 mètres d'altitude. Le sentier traverse une forêt nuageuse et un páramo ouvert — l'écosystème unique de haute montagne colombienne — où les frailejones s'étendent sur les versants. Le lac reflète les sommets environnants et est un sanctuaire pour la faune andine. Un parcours exigeant mais profondément gratifiant pour les amoureux de la nature et les aventuriers. Durée : Journée complète | Difficulté : Exigeante. (Description en cours — contactez-nous pour plus de détails.)"
+      }
     }
   ];
 
