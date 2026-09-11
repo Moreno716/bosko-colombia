@@ -144,10 +144,7 @@ export class App {
     { code: 'es' as Lang, flag: '🇨🇴', label: 'Español' },
     { code: 'fr' as Lang, flag: '🇫🇷', label: 'Français' },
   ];
-  currentLangFlag = computed(() => this.langOptions.find(o => o.code === this.lang())?.flag ?? '🇺🇸');
-
-  langDropdownOpen = signal(false);
-  selectLang(code: Lang) { this.lang.set(code); this.langDropdownOpen.set(false); }
+  selectLang(code: Lang) { this.lang.set(code); }
 
   isScrolled = signal(false);
   mobileMenuOpen = signal(false);
@@ -218,6 +215,11 @@ export class App {
       }
     }
   ];
+
+  tourCarouselIndex = signal(0);
+  nextTourCard() { this.tourCarouselIndex.update(i => (i + 1) % this.tours.length); }
+  prevTourCard() { this.tourCarouselIndex.update(i => (i - 1 + this.tours.length) % this.tours.length); }
+  setTourCard(i: number) { this.tourCarouselIndex.set(i); }
 
   selectedTour = signal<Tour | null>(null);
   tourImageIndex = signal(0);
@@ -326,12 +328,12 @@ export class App {
   @HostListener('document:keydown.escape')
   onEscape() {
     if (this.selectedTour()) this.closeTour();
-    if (this.langDropdownOpen()) this.langDropdownOpen.set(false);
   }
 
   constructor() {
     setInterval(() => this.nextGuideImage(), 5000);
     setInterval(() => this.nextReviewPage(), 12000);
+    setInterval(() => this.nextTourCard(), 5000);
   }
 
   scrollTo(id: string) {
