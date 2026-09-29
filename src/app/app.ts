@@ -173,7 +173,7 @@ export class App {
       }
     },
     {
-      name: 'Salento',
+      name: 'La Carbonera & Cañón de Tochecito Jeep Tour',
       images: ['salento.png', 'valle-del-cocora.png', 'guia2.jpeg'],
       description: {
         en: 'Explore the most picturesque village of Quindío, full of colour, crafts and the finest highland coffee.',
@@ -187,7 +187,7 @@ export class App {
       }
     },
     {
-      name: 'Bosque Barbas Bremen',
+      name: 'Reserva Natural Barbas Bremen & Filandia Tour',
       images: ['barbas-bremen.png', 'carbonera.png', 'guia1.jfif'],
       description: {
         en: 'Venture into a natural reserve, home to howler monkeys and incredible biodiversity.',
