@@ -7,7 +7,7 @@ interface T {
   nav: { guide: string; tours: string; testimonials: string; book: string };
   hero: { title: string; subtitle: string; cta1: string; cta2: string };
   guide: { label: string; title: string; bio: string; feat1: string; feat2: string; feat3: string; contact: string };
-  tours: { title: string; subtitle: string; bookBtn: string; close: string; waMsg: string; details: string; imgAlt: string };
+  tours: { title: string; subtitle: string; customNote: string; bookBtn: string; close: string; waMsg: string; details: string; imgAlt: string };
   reviews: { label: string; title: string; source: string; viewAll: string };
   footer: {
     ready: string; tagline: string; nav: string; contact: string;
@@ -26,15 +26,16 @@ const i18n: Record<Lang, T> = {
     },
     guide: {
       label: 'Your Host', title: 'Expert Nature Guide',
-      bio: 'I am your companion on this adventure. With years of experience exploring the trails of Quindío, my focus is to provide you with a safe, authentic experience deeply connected to the biodiversity of our land.',
-      feat1: 'Experience in mountaineering and hiking',
-      feat2: 'Local knowledge of flora and fauna',
-      feat3: 'Focus on sustainable ecotourism',
+      bio: "Hello everyone, my name is Jeffersson Moreno Castañeda. I am a local guide who has enjoyed every one of the experiences you see here since I was a child, and today I am deeply grateful to life for allowing me to turn my passion into a profession and to have the greenest and most beautiful office in the world. I'll be here waiting for you, ready to share great moments together and explore the most beautiful places in my homeland. Our company Bosko Ecoturismo is more than a simple travel agency — we are friends, a family that grows every day around our love for nature and everything that flourishes with it. Reach out to me directly through our contact lines and ask me anything you like. This is not just about selling, but about making sure you truly enjoy your time in the most beautiful country on earth.",
+      feat1: 'Local guide passionate about his region since childhood',
+      feat2: 'Authentic and personalised experiences for every traveller',
+      feat3: 'A family committed to nature and responsible tourism',
       contact: 'Contact via WhatsApp'
     },
     tours: {
       title: 'Our Destinations',
       subtitle: 'We select the most iconic and stunning locations in the Coffee Region for an unforgettable experience.',
+      customNote: 'These are our 3 main activities, but if you\'d like to explore another destination or personalise your experience, feel free to ask — together we\'ll design the perfect tour for you!',
       bookBtn: 'Book this tour', close: 'Close',
       waMsg: 'Hello Bosko, I want to book the tour to ',
       details: 'View Details', imgAlt: 'Photo of '
@@ -58,15 +59,16 @@ const i18n: Record<Lang, T> = {
     },
     guide: {
       label: 'Tu Anfitrión', title: 'Guía Experto en Naturaleza',
-      bio: 'Soy tu acompañante en esta aventura. Con años de experiencia recorriendo los senderos del Quindío, mi enfoque es brindarte una experiencia segura, auténtica y profundamente conectada con la biodiversidad de nuestra tierra.',
-      feat1: 'Experiencia en montañismo y senderismo',
-      feat2: 'Conocimiento local de flora y fauna',
-      feat3: 'Enfoque en ecoturismo sostenible',
+      bio: 'Hola a todos, mi nombre es Jeffersson Moreno Castañeda, soy un guía local que ha disfrutado de todos los planes que pueden ver desde que soy un niño y hoy en día agradezco enormemente a la vida por permitir convertir mi pasión en un trabajo y poder tener la oficina más verde y hermosa del mundo. Así que aquí te espero para compartir grandes momentos juntos y para recorrer los lugares más hermosos de mi territorio. Además, nuestra empresa Bosko Ecoturismo es más que una simple agencia de viajes, somos amigos, una familia que cada día crece más entorno al amor por la naturaleza y los procesos que crecen a su alrededor. Habla directamente conmigo a través de nuestras líneas de contacto y pregunta lo que quieras, esto no se trata solo de vender sino de que disfrutes tu estadía realmente en el país de la belleza.',
+      feat1: 'Guía local apasionado por su región desde la infancia',
+      feat2: 'Experiencias auténticas y personalizadas para cada viajero',
+      feat3: 'Una familia comprometida con la naturaleza y el turismo responsable',
       contact: 'Contactar por WhatsApp'
     },
     tours: {
       title: 'Nuestros Destinos',
       subtitle: 'Seleccionamos los lugares más emblemáticos y sorprendentes del Eje Cafetero para que vivas una experiencia inolvidable.',
+      customNote: 'Estas son nuestras 3 actividades principales, pero si deseas explorar otro destino o personalizar tu experiencia, no dudes en preguntarme — ¡juntos diseñamos el tour perfecto para ti!',
       bookBtn: 'Reservar tour', close: 'Cerrar',
       waMsg: 'Hola Bosko, quiero reservar el tour a ',
       details: 'Ver Detalles', imgAlt: 'Foto de '
@@ -90,15 +92,16 @@ const i18n: Record<Lang, T> = {
     },
     guide: {
       label: 'Votre hôte', title: 'Guide Expert en Nature',
-      bio: "Je suis votre compagnon dans cette aventure. Avec des années d'expérience à parcourir les sentiers de Quindío, mon objectif est de vous offrir une expérience sûre, authentique et profondément liée à la biodiversité de notre terre.",
-      feat1: 'Expérience en alpinisme et randonnée',
-      feat2: 'Connaissance locale de la flore et de la faune',
-      feat3: "Focus sur l'écotourisme durable",
+      bio: "Bonjour à tous, je m'appelle Jeffersson Moreno Castañeda. Je suis un guide local qui profite de tous les circuits que vous voyez ici depuis que j'étais enfant, et aujourd'hui je suis profondément reconnaissant à la vie de m'avoir permis de transformer ma passion en métier et d'avoir le bureau le plus vert et le plus beau du monde. Je vous attends ici pour partager de beaux moments ensemble et parcourir les plus beaux endroits de mon territoire. Notre entreprise Bosko Ecoturismo est bien plus qu'une simple agence de voyages : nous sommes des amis, une famille qui grandit chaque jour autour de l'amour de la nature et des richesses qui l'entourent. Contactez-moi directement via nos lignes et posez-moi toutes vos questions — il ne s'agit pas seulement de vendre, mais de vous faire vivre un séjour inoubliable dans le plus beau pays du monde.",
+      feat1: 'Guide local passionné par sa région depuis l\'enfance',
+      feat2: 'Expériences authentiques et personnalisées pour chaque voyageur',
+      feat3: 'Une famille engagée pour la nature et le tourisme responsable',
       contact: 'Contacter via WhatsApp'
     },
     tours: {
       title: 'Nos Destinations',
       subtitle: "Nous sélectionnons les lieux les plus emblématiques de la Région Caféière pour une expérience inoubliable.",
+      customNote: "Ce sont nos 3 activités principales, mais si vous souhaitez explorer une autre destination ou personnaliser votre expérience, n'hésitez pas à nous demander — ensemble, nous concevrons le tour parfait pour vous !",
       bookBtn: 'Réserver ce tour', close: 'Fermer',
       waMsg: 'Bonjour Bosko, je veux réserver le tour vers ',
       details: 'Voir les détails', imgAlt: 'Photo de '
@@ -162,70 +165,42 @@ export class App {
       name: 'Valle del Cocora',
       images: ['valle-del-cocora.png', 'salento.png', 'carbonera.png'],
       description: {
-        en: 'Walk among the tallest wax palms in the world in a dreamlike misty landscape.',
-        es: 'Camina entre las palmas de cera más altas del mundo en un paisaje de ensueño envuelto en niebla.',
-        fr: 'Marchez parmi les plus grands palmiers à cire du monde dans un paysage onirique enveloppé de brume.'
+        en: 'Valle del Cocora 5 km or 11 km: come and visit with us the beautiful Valle del Cocora and the magnificent wax palm of Quindío.',
+        es: 'Valle del Cocora 5 km o 11 km: ven a visitar con nosotros el hermoso Valle del Cocora y la imponente palma de cera del Quindío.',
+        fr: 'Valle del Cocora 5 km ou 11 km : venez visiter avec nous le magnifique Valle del Cocora et l\'imposant palmier à cire du Quindío.'
       },
       detail: {
-        en: "Valle del Cocora is the iconic valley of the Coffee Region, home to the wax palm — Colombia's national tree and the tallest palm in the world, reaching up to 60 metres. Walking through the mist among these giant palms is a truly magical experience. The trail leads you through cloud forest, hanging bridges, and breathtaking viewpoints. You may spot hummingbirds, orchids, and if you're lucky, the elusive spectacled bear. Duration: 4–6 hours | Difficulty: Moderate.",
-        es: "El Valle del Cocora es el icónico valle del Eje Cafetero, hogar de la palma de cera — el árbol nacional de Colombia y la palma más alta del mundo, llegando hasta 60 metros. Caminar entre la niebla rodeado de estas gigantescas palmas es una experiencia verdaderamente mágica. El sendero te lleva por bosque nublado, puentes colgantes y miradores impresionantes. Podrás ver colibríes, orquídeas y, si tienes suerte, el esquivo oso de anteojos. Duración: 4–6 horas | Dificultad: Moderada.",
-        fr: "La Vallée du Cocora est l'emblématique vallée de la Région Caféière, abritant le palmier à cire — arbre national de Colombie et palmier le plus haut du monde, atteignant jusqu'à 60 mètres. Marcher dans la brume parmi ces immenses palmiers est une expérience vraiment magique. Le sentier traverse une forêt nuageuse, des ponts suspendus et des points de vue à couper le souffle. Vous pourrez observer des colibris, des orchidées et, avec de la chance, l'insaisissable ours à lunettes. Durée : 4–6 h | Difficulté : Modérée."
+        en: "The Valle del Cocora is one of the most iconic places in the Coffee Region. This beautiful valley, born in the highlands of Quindío, is one of the most magical destinations for our visitors. Let yourself fall in love with its history, its biodiversity, and the beautiful mountains that surround this stunning part of the Colombian Andes during a very special hike through these breathtaking landscapes, all guided by our knowledgeable local guides. This activity offers a variety of options and possibilities to organise and personalise your experience according to your interests, so don't hesitate to reach out to me — I'll help you arrange your stay in the most convenient way possible.",
+        es: "El Valle del Cocora es uno de los lugares más emblemáticos del Eje Cafetero. Este hermoso valle que nace en el alto Quindío es uno de los lugares que más magia ofrecen a nuestros visitantes. Déjate enamorar de su historia, su biodiversidad y las montañas hermosas que rodean esta linda parte de la cordillera de los Andes en un hiking muy especial en medio de estos imponentes paisajes y toda la información brindada por nuestros guías locales. Esta actividad cuenta con diferentes opciones y posibilidades de organizar y personalizar tu experiencia de acuerdo con tu interés, así que no dudes en contactarme y te ayudo a arreglar tu estadía de la manera más conveniente.",
+        fr: "La Vallée del Cocora est l'un des endroits les plus emblématiques de la Région Caféière. Cette magnifique vallée, née dans les hautes terres du Quindío, est l'un des lieux qui offrent le plus de magie à nos visiteurs. Laissez-vous séduire par son histoire, sa biodiversité et les belles montagnes qui entourent cette belle partie de la cordillère des Andes lors d'une randonnée très spéciale au milieu de ces paysages imposants, avec toutes les informations de nos guides locaux. Cette activité propose différentes options et possibilités d'organiser et de personnaliser votre expérience selon vos intérêts, alors n'hésitez pas à me contacter et je vous aiderai à organiser votre séjour de la façon la plus pratique possible."
       }
     },
     {
       name: 'La Carbonera & Cañón de Tochecito Jeep Tour',
-      images: ['salento.png', 'valle-del-cocora.png', 'guia2.jpeg'],
+      images: ['carbonera.png', 'valle-del-cocora.png', 'barbas-bremen.png'],
       description: {
-        en: 'Explore the most picturesque village of Quindío, full of colour, crafts and the finest highland coffee.',
-        es: 'Explora el pueblo más pintoresco del Quindío, lleno de color, artesanías y el mejor café de altura.',
-        fr: "Explorez le village le plus pittoresque de Quindío, plein de couleurs, d'artisanat et du meilleur café d'altitude."
+        en: 'Come and enjoy with us the incredible largest wax palm forest in the world — a truly unique place on our planet.',
+        es: 'Ven con nosotros a disfrutar del increíble bosque de palmas de cera más grande del mundo, un lugar único en nuestro planeta.',
+        fr: 'Venez avec nous découvrir l\'incroyable plus grande forêt de palmiers à cire du monde, un endroit unique sur notre planète.'
       },
       detail: {
-        en: "Salento is a living testament to traditional Antioquian architecture — colourful balconies, cobblestone streets and a main plaza buzzing with life. Wander through artisan shops selling handmade wax palm figurines, sip freshly brewed mountain coffee on a café terrace, and soak in the panoramic views from the Alto de la Cruz viewpoint. The surrounding coffee farms offer authentic farm-to-cup experiences. Duration: Full day | Difficulty: Easy.",
-        es: "Salento es un testimonio vivo de la arquitectura tradicional antioqueña: coloridos balcones, calles empedradas y una plaza principal llena de vida. Recorre las tiendas artesanales con figuritas de palma de cera hechas a mano, saborea un café de altura recién preparado en una terraza y disfruta las vistas panorámicas desde el Alto de la Cruz. Las fincas cafeteras del entorno ofrecen experiencias auténticas del campo a la taza. Duración: Día completo | Dificultad: Fácil.",
-        fr: "Salento est un témoignage vivant de l'architecture antioquienne traditionnelle : balcons colorés, rues pavées et place principale animée. Flânez dans les boutiques artisanales vendant des figurines de palmier à cire faites main, dégustez un café de montagne fraîchement préparé en terrasse et profitez des vues panoramiques depuis le Alto de la Cruz. Les fermes caféières environnantes proposent d'authentiques expériences du champ à la tasse. Durée : Journée complète | Difficulté : Facile."
+        en: "The Cañón de Tochecito, better known as La Carbonera, is that hidden treasure that few people talk about and even fewer have ever seen. This place is a combination of history, wealth, nature, magic, and incredible contrasts. Thanks to our team, we are able to offer this tour, which is one of my must-dos in Salento. La Carbonera is home to around 600,000 wax palms, making it the largest palm forest in the world in its category. Here we will explore a region far from mass tourism, rich in species and conservation, and the home of our beautiful yellow-eared parrot — a species endemic to the Andes that, along with more than 400 other types of birds recorded at the site, adorns the magnificent Cañón de Tochecito.",
+        es: "El cañón de Tochecito, más conocido como La Carbonera, es ese tesoro escondido del que pocas personas hablan y muchas menos conocen. Este lugar es una combinación de historia, riqueza, naturaleza, magia e increíbles contrastes. Gracias a nuestro equipo de trabajo podemos disfrutar de este tour que es uno de mis infaltables en Salento. La Carbonera alberga alrededor de 600.000 palmas de cera, siendo el bosque de palmas más grande del mundo en su categoría. Aquí vamos a disfrutar de una zona alejada del turismo masivo, rica en especies y conservación, y el hogar de nuestro hermoso loro orejiamarillo, una especie endémica de los Andes que, junto a otros más de 400 tipos de aves registradas en el lugar, decoran el maravilloso cañón de Tochecito.",
+        fr: "Le Cañón de Tochecito, plus connu sous le nom de La Carbonera, est ce trésor caché dont peu de personnes parlent et que très peu connaissent. Cet endroit est une combinaison d'histoire, de richesse, de nature, de magie et de contrastes incroyables. Grâce à notre équipe, nous pouvons profiter de ce tour qui est l'un de mes incontournables à Salento. La Carbonera abrite environ 600 000 palmiers à cire, ce qui en fait la plus grande forêt de palmiers du monde dans sa catégorie. Ici, nous allons profiter d'une zone éloignée du tourisme de masse, riche en espèces et en préservation, et qui est le foyer de notre beau perroquet aux oreilles jaunes — une espèce endémique des Andes qui, avec plus de 400 autres types d'oiseaux recensés sur le site, décore le merveilleux Cañón de Tochecito."
       }
     },
     {
       name: 'Reserva Natural Barbas Bremen & Filandia Tour',
       images: ['barbas-bremen.png', 'carbonera.png', 'guia1.jfif'],
       description: {
-        en: 'Venture into a natural reserve, home to howler monkeys and incredible biodiversity.',
-        es: 'Adéntrate en una reserva natural hogar de los monos aulladores y una biodiversidad sorprendente.',
-        fr: "Plongez dans une réserve naturelle abritant des singes hurleurs et une biodiversité impressionnante."
+        en: "Let's go together to visit the most beautiful village in Colombia and the largest forest in Quindío, full of life and our wonderful howler monkeys.",
+        es: 'Vamos juntos a visitar el pueblo más lindo de Colombia y el bosque más grande del Quindío lleno de vida y nuestros lindos monos aulladores.',
+        fr: 'Partons ensemble visiter le plus beau village de Colombie et la plus grande forêt du Quindío, pleine de vie et de nos adorables singes hurleurs.'
       },
       detail: {
-        en: "Bosque Barbas Bremen is a natural reserve of extraordinary biodiversity. The howler monkey's roar is your soundtrack as you explore misty cloud forest draped in mosses and bromeliads. More than 300 bird species have been recorded here — a paradise for birdwatchers. Crystal-clear streams and hidden waterfalls punctuate the ancient trails, and endemic plants grow at every step. A deeply immersive nature experience far from the tourist crowds. Duration: 5–7 hours | Difficulty: Moderate–Demanding.",
-        es: "El Bosque Barbas Bremen es una reserva natural de extraordinaria biodiversidad. El rugido del mono aullador es tu banda sonora mientras exploras un bosque nublado cubierto de musgos y bromelias. Se han registrado más de 300 especies de aves aquí — un paraíso para los observadores de pájaros. Quebradas cristalinas y cascadas ocultas jalonan los senderos ancestrales, y plantas endémicas crecen a cada paso. Una experiencia natural profundamente inmersiva, lejos de las multitudes turísticas. Duración: 5–7 horas | Dificultad: Moderada–Exigente.",
-        fr: "Le Bosque Barbas Bremen est une réserve naturelle d'une biodiversité extraordinaire. Le rugissement du singe hurleur vous accompagne tandis que vous explorez une forêt nuageuse drapée de mousses et de broméliacées. Plus de 300 espèces d'oiseaux y ont été recensées — un paradis pour les ornithologues. Des ruisseaux cristallins et des cascades cachées ponctuent les sentiers ancestraux, et des plantes endémiques poussent à chaque pas. Une expérience naturelle profondément immersive, loin des foules touristiques. Durée : 5–7 h | Difficulté : Modérée–Exigeante."
-      }
-    },
-    {
-      name: 'Valle de la Carbonera',
-      images: ['carbonera.png', 'valle-del-cocora.png', 'barbas-bremen.png'],
-      description: {
-        en: 'Discover the largest and best-preserved wax palm forest in the world — a hidden gem.',
-        es: 'Descubre el bosque de palmas de cera más grande y mejor conservado del mundo, una joya oculta.',
-        fr: "Découvrez la plus grande forêt de palmiers à cire du monde, la mieux conservée — un joyau caché."
-      },
-      detail: {
-        en: "Valle de la Carbonera is Colombia's best-kept natural secret: the largest and best-preserved wax palm forest on the planet. Unlike the more visited Cocora, La Carbonera offers an intimate off-the-beaten-path journey through dense palm groves stretching toward the sky. The silence here is profound, broken only by birdsong and the rustle of fronds in the breeze. Fewer visitors, pristine nature, and an unforgettable sense of solitude and wonder. Duration: 4–6 hours | Difficulty: Moderate.",
-        es: "El Valle de la Carbonera es el mejor secreto natural de Colombia: el bosque de palmas de cera más grande y mejor conservado del planeta. A diferencia del más visitado Cocora, La Carbonera ofrece una travesía íntima y fuera de los caminos trillados a través de densos palmares que se elevan hacia el cielo. El silencio aquí es profundo, roto solo por el canto de los pájaros y el susurro de las hojas con la brisa. Menos visitantes, naturaleza prístina y una sensación inolvidable de soledad y asombro. Duración: 4–6 horas | Dificultad: Moderada.",
-        fr: "La Vallée de la Carbonera est le meilleur secret naturel de Colombie : la plus grande et la mieux conservée forêt de palmiers à cire de la planète. Contrairement au Cocora plus fréquenté, La Carbonera offre un voyage intime hors des sentiers battus à travers de denses palmeraies s'élevant vers le ciel. Le silence y est profond, brisé seulement par le chant des oiseaux et le bruissement des feuilles dans la brise. Moins de visiteurs, une nature préservée et un inoubliable sentiment de solitude et d'émerveillement. Durée : 4–6 h | Difficulté : Modérée."
-      }
-    },
-    {
-      name: 'Laguna del Otún',
-      images: ['valle-del-cocora.png', 'barbas-bremen.png', 'carbonera.png'],
-      description: {
-        en: 'Trek to one of the most spectacular high-altitude lakes in the Colombian Andes, surrounded by páramo.',
-        es: 'Sube hasta una de las lagunas de alta montaña más espectaculares de los Andes colombianos, rodeada de páramo.',
-        fr: "Randonnée vers l'un des lacs d'altitude les plus spectaculaires des Andes colombiennes, entouré de páramo."
-      },
-      detail: {
-        en: "Laguna del Otún is a breathtaking high-altitude lake nestled in the heart of the Los Nevados National Natural Park, at over 3,900 metres above sea level. The trail winds through cloud forest and open páramo — Colombia's unique high-altitude ecosystem — where frailejones (giant rosette plants) stretch across the hillsides. The lake reflects the surrounding peaks and is a sanctuary for Andean wildlife. A challenging but deeply rewarding journey for nature lovers and adventure seekers alike. Duration: Full day | Difficulty: Demanding. (Description coming soon — contact us for details.)",
-        es: "La Laguna del Otún es un lago de alta montaña de una belleza impresionante, ubicado en el corazón del Parque Nacional Natural Los Nevados, a más de 3.900 metros sobre el nivel del mar. El sendero atraviesa bosque nublado y páramo abierto — el ecosistema único de alta montaña colombiana — donde los frailejones se extienden por las laderas. El lago refleja los picos circundantes y es un santuario de vida silvestre andina. Un recorrido exigente pero profundamente gratificante para amantes de la naturaleza y aventureros. Duración: Día completo | Dificultad: Exigente. (Descripción en construcción — contáctanos para más detalles.)",
-        fr: "La Laguna del Otún est un lac d'altitude d'une beauté à couper le souffle, niché au cœur du Parc National Naturel Los Nevados, à plus de 3 900 mètres d'altitude. Le sentier traverse une forêt nuageuse et un páramo ouvert — l'écosystème unique de haute montagne colombienne — où les frailejones s'étendent sur les versants. Le lac reflète les sommets environnants et est un sanctuaire pour la faune andine. Un parcours exigeant mais profondément gratifiant pour les amoureux de la nature et les aventuriers. Durée : Journée complète | Difficulté : Exigeante. (Description en cours — contactez-nous pour plus de détails.)"
+        en: "Barbas Bremen is a natural reserve with a highly important protected area for our territory, home to a great variety of native species: a dense and incredibly diverse forest, birds, insects, and our wonderful howler monkeys. On this tour we offer different options to suit the conditions of each of our guests — ask me directly about all available options.",
+        es: "Barbas Bremen es una reserva natural que cuenta con un área protegida bastante importante para nuestro territorio y que alberga una gran cantidad de especies nativas, un bosque denso y muy diverso, aves, insectos y nuestros lindos monos aulladores. En este recorrido ofrecemos diferentes opciones de acuerdo a las condiciones de cada uno de nuestros invitados, pregúntame directamente por todas las opciones.",
+        fr: "Barbas Bremen est une réserve naturelle qui dispose d'une zone protégée d'une grande importance pour notre territoire et qui abrite une grande variété d'espèces natives : une forêt dense et très diversifiée, des oiseaux, des insectes et nos adorables singes hurleurs. Sur ce circuit, nous proposons différentes options en fonction des conditions de chacun de nos invités — demandez-moi directement toutes les options disponibles."
       }
     }
   ];
