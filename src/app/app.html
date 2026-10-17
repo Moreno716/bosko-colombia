@@ -319,48 +319,65 @@
     <div class="relative bg-white rounded-3xl w-full max-w-3xl max-h-[92vh] overflow-y-auto shadow-2xl"
       (click)="$event.stopPropagation()">
 
-      <!-- Image Carousel -->
-      <div class="relative overflow-hidden rounded-t-3xl bg-primary/10"
-        [class]="tour.images.length > 1 ? 'aspect-video' : 'aspect-[16/9]'">
-        <div class="flex h-full transition-transform duration-500 ease-in-out"
-          [style.transform]="'translateX(-' + (tourImageIndex() * 100) + '%)'">
-          @for (img of tour.images; track img) {
-            <img [src]="img" [alt]="t().tours.imgAlt + tour.name"
-              class="w-full h-full object-cover flex-shrink-0">
-          }
-        </div>
+      <!-- Close button -->
+      <button (click)="closeTour()"
+        class="absolute top-4 right-4 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-2 rounded-full transition-all z-20">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
 
-        @if (tour.images.length > 1) {
-          <button (click)="prevTourImage()"
-            class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white p-2.5 rounded-full transition-all z-10">
+      <!-- Main media viewer -->
+      <div class="relative rounded-t-3xl overflow-hidden bg-gray-900 aspect-video">
+        @if (currentMedia()?.type === 'video') {
+          <video [src]="currentMedia()!.src" controls class="w-full h-full object-contain"></video>
+        } @else {
+          <img [src]="currentMedia()?.src" [alt]="t().tours.imgAlt + tour.name"
+            class="w-full h-full object-cover">
+        }
+
+        <!-- Prev / Next arrows -->
+        @if (currentTourMedia().length > 1) {
+          <button (click)="prevGalleryMedia(); $event.stopPropagation()"
+            class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white p-2.5 rounded-full transition-all z-10">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
-          <button (click)="nextTourImage()"
-            class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 backdrop-blur-sm text-white p-2.5 rounded-full transition-all z-10">
+          <button (click)="nextGalleryMedia(); $event.stopPropagation()"
+            class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white p-2.5 rounded-full transition-all z-10">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
           </button>
-          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-            @for (img of tour.images; track img) {
-              <button (click)="setTourImage($index)"
-                class="w-2.5 h-2.5 rounded-full transition-all"
-                [class.bg-white]="tourImageIndex() === $index"
-                [class.bg-white/40]="tourImageIndex() !== $index"></button>
-            }
-          </div>
+          <!-- Counter -->
+          <span class="absolute bottom-3 right-4 bg-black/50 text-white text-xs px-2.5 py-1 rounded-full font-medium">
+            {{ galleryMediaIndex() + 1 }} / {{ currentTourMedia().length }}
+          </span>
         }
-
-        <!-- Close button (top-right) -->
-        <button (click)="closeTour()"
-          class="absolute top-4 right-4 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-2 rounded-full transition-all z-20">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
       </div>
+
+      <!-- Thumbnail grid -->
+      @if (currentTourMedia().length > 1) {
+        <div class="grid grid-cols-5 sm:grid-cols-7 gap-1.5 p-3 max-h-40 overflow-y-auto bg-gray-50 border-b border-gray-100">
+          @for (media of currentTourMedia(); track $index) {
+            <button (click)="setGalleryMedia($index)"
+              class="aspect-square rounded-lg overflow-hidden ring-2 transition-all flex-shrink-0"
+              [ngClass]="galleryMediaIndex() === $index ? 'ring-primary scale-95' : 'ring-transparent hover:ring-primary/40'">
+              @if (media.type === 'video') {
+                <div class="w-full h-full bg-gray-800 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              } @else {
+                <img [src]="media.src" [alt]="'Foto ' + ($index + 1)"
+                  class="w-full h-full object-cover">
+              }
+            </button>
+          }
+        </div>
+      }
 
       <!-- Modal Content -->
       <div class="p-6 md:p-8">

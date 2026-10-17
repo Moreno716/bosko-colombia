@@ -121,6 +121,7 @@ const i18n: Record<Lang, T> = {
 export interface Tour {
   name: string;
   images: string[];
+  videos?: string[];
   description: Record<Lang, string>;
   detail: Record<Lang, string>;
 }
@@ -177,7 +178,7 @@ export class App {
     },
     {
       name: 'La Carbonera & Cañón de Tochecito Jeep Tour',
-      images: ['carbonera.png', 'valle-del-cocora.png', 'barbas-bremen.png'],
+      images: Array.from({length: 33}, (_, i) => `carbonera_tochecito/carbonera${i + 1}.jpg`),
       description: {
         en: 'Come and enjoy with us the incredible largest wax palm forest in the world — a truly unique place on our planet.',
         es: 'Ven con nosotros a disfrutar del increíble bosque de palmas de cera más grande del mundo, un lugar único en nuestro planeta.',
@@ -191,7 +192,8 @@ export class App {
     },
     {
       name: 'Reserva Natural Barbas Bremen & Filandia Tour',
-      images: ['barbas-bremen.png', 'carbonera.png', 'guia1.jfif'],
+      images: Array.from({length: 43}, (_, i) => `barbasBremen_filandia/bremen${i + 1}.jpg`),
+      videos: ['barbasBremen_filandia/bremen_video1.mp4', 'barbasBremen_filandia/bremen_video2.mp4', 'barbasBremen_filandia/bremen_video3.mp4'],
       description: {
         en: "Let's go together to visit the most beautiful village in Colombia and the largest forest in Quindío, full of life and our wonderful howler monkeys.",
         es: 'Vamos juntos a visitar el pueblo más lindo de Colombia y el bosque más grande del Quindío lleno de vida y nuestros lindos monos aulladores.',
@@ -211,11 +213,22 @@ export class App {
   setTourCard(i: number) { this.tourCarouselIndex.set(i); }
 
   selectedTour = signal<Tour | null>(null);
-  tourImageIndex = signal(0);
+  galleryMediaIndex = signal(0);
+
+  currentTourMedia = computed(() => {
+    const tour = this.selectedTour();
+    if (!tour) return [];
+    return [
+      ...tour.images.map(src => ({ type: 'image' as const, src })),
+      ...(tour.videos ?? []).map(src => ({ type: 'video' as const, src }))
+    ];
+  });
+
+  currentMedia = computed(() => this.currentTourMedia()[this.galleryMediaIndex()] ?? null);
 
   openTour(tour: Tour) {
     this.selectedTour.set(tour);
-    this.tourImageIndex.set(0);
+    this.galleryMediaIndex.set(0);
     if (typeof document !== 'undefined') document.body.classList.add('modal-open');
   }
 
@@ -224,17 +237,17 @@ export class App {
     if (typeof document !== 'undefined') document.body.classList.remove('modal-open');
   }
 
-  nextTourImage() {
-    const tour = this.selectedTour();
-    if (tour) this.tourImageIndex.update(i => (i + 1) % tour.images.length);
+  nextGalleryMedia() {
+    const total = this.currentTourMedia().length;
+    this.galleryMediaIndex.update(i => (i + 1) % total);
   }
 
-  prevTourImage() {
-    const tour = this.selectedTour();
-    if (tour) this.tourImageIndex.update(i => (i - 1 + tour.images.length) % tour.images.length);
+  prevGalleryMedia() {
+    const total = this.currentTourMedia().length;
+    this.galleryMediaIndex.update(i => (i - 1 + total) % total);
   }
 
-  setTourImage(index: number) { this.tourImageIndex.set(index); }
+  setGalleryMedia(index: number) { this.galleryMediaIndex.set(index); }
 
   getWaUrl(tourName: string): string {
     const msg = this.t().tours.waMsg + tourName;
