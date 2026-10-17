@@ -42,6 +42,14 @@
   @apply bg-warm text-white px-8 py-3 rounded-full hover:opacity-90 transition-all duration-300 font-bold text-center inline-flex items-center justify-center gap-2;
 }
 
+/* Hide scrollbars on drag-scrollable strips */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Modal body lock */
 body.modal-open {
   overflow: hidden;

@@ -252,13 +252,15 @@
 
     <!-- Tour Carousel -->
     <div class="relative">
-      <div class="overflow-hidden rounded-3xl shadow-2xl">
+      <div class="overflow-hidden rounded-3xl shadow-2xl touch-pan-y select-none"
+        (pointerdown)="swipeStart($event)" (pointerup)="swipeTourEnd($event)">
         <div class="flex transition-transform duration-700 ease-in-out"
           [style.transform]="'translateX(-' + (tourCarouselIndex() * 100) + '%)'">
           @for (tour of tours; track tour.name) {
             <div class="w-full flex-shrink-0 relative cursor-pointer aspect-[4/3] sm:aspect-video md:aspect-[21/9]"
-              (click)="openTour(tour)">
-              <img [src]="tour.images[0]" [alt]="tour.name" class="w-full h-full object-cover">
+              (click)="onTourCardClick(tour)">
+              <img [src]="tour.cover" [alt]="tour.name" class="w-full h-full object-cover" draggable="false"
+                [style.object-position]="tour.coverPosition" [class.-scale-x-100]="tour.coverFlip">
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
               <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
               <div class="absolute bottom-0 left-0 p-6 md:p-12 text-white max-w-2xl">
@@ -328,12 +330,16 @@
       </button>
 
       <!-- Main media viewer -->
-      <div class="relative rounded-t-3xl overflow-hidden bg-gray-900 aspect-video">
+      <!-- Photos are mostly vertical: show them whole (contain) over a blurred copy of themselves -->
+      <div class="relative rounded-t-3xl overflow-hidden bg-gray-900 h-[58vh] sm:h-[65vh] max-h-[680px] select-none touch-pan-y cursor-grab"
+        (pointerdown)="swipeStart($event)" (pointerup)="swipeGalleryEnd($event)">
         @if (currentMedia()?.type === 'video') {
-          <video [src]="currentMedia()!.src" controls class="w-full h-full object-contain"></video>
+          <video [src]="currentMedia()!.src" controls playsinline class="w-full h-full object-contain"></video>
         } @else {
-          <img [src]="currentMedia()?.src" [alt]="t().tours.imgAlt + tour.name"
-            class="w-full h-full object-cover">
+          <img [src]="currentMedia()?.src" alt="" aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-60" draggable="false">
+          <img [src]="currentMedia()?.src" [alt]="t().tours.imgAlt + tour.name" draggable="false"
+            class="relative w-full h-full object-contain">
         }
 
         <!-- Prev / Next arrows -->
@@ -351,7 +357,7 @@
             </svg>
           </button>
           <!-- Counter -->
-          <span class="absolute bottom-3 right-4 bg-black/50 text-white text-xs px-2.5 py-1 rounded-full font-medium">
+          <span class="absolute top-4 left-4 bg-black/50 text-white text-xs px-2.5 py-1 rounded-full font-medium">
             {{ galleryMediaIndex() + 1 }} / {{ currentTourMedia().length }}
           </span>
         }
@@ -359,21 +365,24 @@
 
       <!-- Thumbnail grid -->
       @if (currentTourMedia().length > 1) {
-        <div class="grid grid-cols-5 sm:grid-cols-7 gap-1.5 p-3 max-h-40 overflow-y-auto bg-gray-50 border-b border-gray-100">
+        <div #strip class="flex gap-2 p-3 overflow-x-auto no-scrollbar cursor-grab select-none bg-gray-50 border-b border-gray-100"
+          (pointerdown)="stripDown($event, strip)" (pointermove)="stripMove($event, strip)"
+          (pointerup)="stripUp()" (pointerleave)="stripUp()">
           @for (media of currentTourMedia(); track $index) {
-            <button (click)="setGalleryMedia($index)"
-              class="aspect-square rounded-lg overflow-hidden ring-2 transition-all flex-shrink-0"
-              [ngClass]="galleryMediaIndex() === $index ? 'ring-primary scale-95' : 'ring-transparent hover:ring-primary/40'">
-              @if (media.type === 'video') {
-                <div class="w-full h-full bg-gray-800 flex items-center justify-center">
-                  <svg class="w-5 h-5 text-white opacity-80" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                </div>
-              } @else {
-                <img [src]="media.src" [alt]="'Foto ' + ($index + 1)"
+            <button [id]="'thumb-' + $index" (click)="onThumbClick($index)"
+              class="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden ring-2 transition-all"
+              [ngClass]="galleryMediaIndex() === $index ? 'ring-primary' : 'ring-transparent opacity-70 hover:opacity-100'">
+              <span class="relative block w-full h-full">
+                <img [src]="thumb(media.src)" [alt]="'Foto ' + ($index + 1)" loading="lazy" draggable="false"
                   class="w-full h-full object-cover">
-              }
+                @if (media.type === 'video') {
+                  <span class="absolute inset-0 flex items-center justify-center bg-black/30">
+                    <svg class="w-7 h-7 text-white drop-shadow" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </span>
+                }
+              </span>
             </button>
           }
         </div>

@@ -120,8 +120,14 @@ const i18n: Record<Lang, T> = {
 
 export interface Tour {
   name: string;
-  images: string[];
-  videos?: string[];
+  /** Landscape photo used on the carousel card (most gallery photos are vertical). */
+  cover: string;
+  /** CSS object-position that keeps the subject visible when the cover is cropped. */
+  coverPosition: string;
+  /** Mirror the cover so the subject sits away from the text overlay on the left. */
+  coverFlip?: boolean;
+  /** Gallery in display order (photos and videos mixed on purpose). */
+  media: Media[];
   description: Record<Lang, string>;
   detail: Record<Lang, string>;
 }
@@ -130,6 +136,21 @@ export interface Review {
   name: string;
   stars: number;
   text: string;
+}
+
+export interface Media {
+  type: 'image' | 'video';
+  src: string;
+}
+
+/**
+ * Builds a gallery in the given order. A number is a photo `<prefix><n>.jpg`;
+ * a string like 'v3' is the video `<prefix>_video3.mp4`.
+ */
+function gallery(prefix: string, order: (number | string)[]): Media[] {
+  return order.map(item => typeof item === 'number'
+    ? { type: 'image' as const, src: `${prefix}${item}.jpg` }
+    : { type: 'video' as const, src: `${prefix}_video${item.slice(1)}.mp4` });
 }
 
 @Component({
@@ -164,7 +185,9 @@ export class App {
   tours: Tour[] = [
     {
       name: 'Valle del Cocora',
-      images: ['valle-del-cocora.png', 'salento.png', 'carbonera.png'],
+      cover: 'valle-del-cocora.png',
+      coverPosition: 'center 45%',
+      media: ['valle-del-cocora.png', 'salento.png', 'carbonera.png'].map(src => ({ type: 'image' as const, src })),
       description: {
         en: 'Valle del Cocora 5 km or 11 km: come and visit with us the beautiful Valle del Cocora and the magnificent wax palm of Quindío.',
         es: 'Valle del Cocora 5 km o 11 km: ven a visitar con nosotros el hermoso Valle del Cocora y la imponente palma de cera del Quindío.',
@@ -178,7 +201,13 @@ export class App {
     },
     {
       name: 'La Carbonera & Cañón de Tochecito Jeep Tour',
-      images: Array.from({length: 33}, (_, i) => `carbonera_tochecito/carbonera${i + 1}.jpg`),
+      cover: 'carbonera_tochecito/carbonera1.jpg',
+      coverPosition: 'center',
+      // Alternates people/landscape with wildlife, never two similar shots in a row.
+      media: gallery('carbonera_tochecito/carbonera', [
+        1, 2, 10, 5, 12, 3, 16, 21, 11, 4, 14, 22, 20, 6, 17, 25,
+        15, 8, 23, 33, 19, 27, 7, 13, 26, 32, 24, 9, 29, 30, 28, 18
+      ]),
       description: {
         en: 'Come and enjoy with us the incredible largest wax palm forest in the world — a truly unique place on our planet.',
         es: 'Ven con nosotros a disfrutar del increíble bosque de palmas de cera más grande del mundo, un lugar único en nuestro planeta.',
@@ -192,8 +221,14 @@ export class App {
     },
     {
       name: 'Reserva Natural Barbas Bremen & Filandia Tour',
-      images: Array.from({length: 43}, (_, i) => `barbasBremen_filandia/bremen${i + 1}.jpg`),
-      videos: ['barbasBremen_filandia/bremen_video1.mp4', 'barbasBremen_filandia/bremen_video2.mp4', 'barbasBremen_filandia/bremen_video3.mp4'],
+      cover: 'barbasBremen_filandia/bremen15.jpg',
+      coverPosition: 'center 55%',
+      coverFlip: true,
+      // Howler monkey photo + video up front; videos and wildlife spread through the rest.
+      media: gallery('barbasBremen_filandia/bremen', [
+        1, 'v3', 4, 2, 40, 10, 19, 11, 'v1', 23, 13, 15, 3, 31, 21, 34, 12, 'v2', 28, 14,
+        24, 20, 6, 22, 26, 27, 9, 29, 32, 30, 5, 38, 18, 39, 43, 41, 17, 16, 25, 7, 33
+      ]),
       description: {
         en: "Let's go together to visit the most beautiful village in Colombia and the largest forest in Quindío, full of life and our wonderful howler monkeys.",
         es: 'Vamos juntos a visitar el pueblo más lindo de Colombia y el bosque más grande del Quindío lleno de vida y nuestros lindos monos aulladores.',
@@ -207,22 +242,27 @@ export class App {
     }
   ];
 
+  readonly tourAutoplayMs = 12000;
+  private tourTimer?: ReturnType<typeof setInterval>;
   tourCarouselIndex = signal(0);
-  nextTourCard() { this.tourCarouselIndex.update(i => (i + 1) % this.tours.length); }
-  prevTourCard() { this.tourCarouselIndex.update(i => (i - 1 + this.tours.length) % this.tours.length); }
-  setTourCard(i: number) { this.tourCarouselIndex.set(i); }
+  nextTourCard() { this.tourCarouselIndex.update(i => (i + 1) % this.tours.length); this.startTourAutoplay(); }
+  prevTourCard() { this.tourCarouselIndex.update(i => (i - 1 + this.tours.length) % this.tours.length); this.startTourAutoplay(); }
+  setTourCard(i: number) { this.tourCarouselIndex.set(i); this.startTourAutoplay(); }
+
+  /** (Re)starts the autoplay so a manual click always gets the full reading time. */
+  private startTourAutoplay() {
+    clearInterval(this.tourTimer);
+    this.tourTimer = setInterval(() => {
+      // Don't slide behind an open gallery modal.
+      if (this.selectedTour()) return;
+      this.tourCarouselIndex.update(i => (i + 1) % this.tours.length);
+    }, this.tourAutoplayMs);
+  }
 
   selectedTour = signal<Tour | null>(null);
   galleryMediaIndex = signal(0);
 
-  currentTourMedia = computed(() => {
-    const tour = this.selectedTour();
-    if (!tour) return [];
-    return [
-      ...tour.images.map(src => ({ type: 'image' as const, src })),
-      ...(tour.videos ?? []).map(src => ({ type: 'video' as const, src }))
-    ];
-  });
+  currentTourMedia = computed(() => this.selectedTour()?.media ?? []);
 
   currentMedia = computed(() => this.currentTourMedia()[this.galleryMediaIndex()] ?? null);
 
@@ -239,15 +279,69 @@ export class App {
 
   nextGalleryMedia() {
     const total = this.currentTourMedia().length;
-    this.galleryMediaIndex.update(i => (i + 1) % total);
+    this.setGalleryMedia((this.galleryMediaIndex() + 1) % total);
   }
 
   prevGalleryMedia() {
     const total = this.currentTourMedia().length;
-    this.galleryMediaIndex.update(i => (i - 1 + total) % total);
+    this.setGalleryMedia((this.galleryMediaIndex() - 1 + total) % total);
   }
 
-  setGalleryMedia(index: number) { this.galleryMediaIndex.set(index); }
+  setGalleryMedia(index: number) {
+    this.galleryMediaIndex.set(index);
+    if (typeof document === 'undefined') return;
+    setTimeout(() => document.getElementById('thumb-' + index)
+      ?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }));
+  }
+
+  /** Small version of a gallery photo (generated under a `thumbs/` folder next to it). */
+  thumb(src: string): string {
+    return src.replace(/([^/]+)$/, 'thumbs/$1').replace(/\.mp4$/, '.jpg');
+  }
+
+  // Swipe / drag with finger or mouse (pointer events cover both).
+  private swipeX = 0;
+  private swiped = false;
+  swipeStart(e: PointerEvent) { this.swipeX = e.clientX; this.swiped = false; }
+  swipeEnd(e: PointerEvent, next: () => void, prev: () => void) {
+    // Let video controls (seek bar, volume) work without changing slide.
+    if ((e.target as HTMLElement).tagName === 'VIDEO') return;
+    const dx = e.clientX - this.swipeX;
+    if (Math.abs(dx) < 50) return;
+    this.swiped = true;
+    if (dx < 0) next(); else prev();
+  }
+  swipeGalleryEnd(e: PointerEvent) {
+    this.swipeEnd(e, () => this.nextGalleryMedia(), () => this.prevGalleryMedia());
+  }
+  swipeTourEnd(e: PointerEvent) {
+    this.swipeEnd(e, () => this.nextTourCard(), () => this.prevTourCard());
+  }
+  /** A swipe on a tour card must not also open it. */
+  onTourCardClick(tour: Tour) {
+    if (this.swiped) { this.swiped = false; return; }
+    this.openTour(tour);
+  }
+
+  // Mouse drag-to-scroll for the thumbnail strip (touch already scrolls natively).
+  private strip?: { x: number; left: number };
+  private stripMoved = false;
+  stripDown(e: PointerEvent, el: HTMLElement) {
+    if (e.pointerType !== 'mouse') return;
+    this.strip = { x: e.clientX, left: el.scrollLeft };
+    this.stripMoved = false;
+  }
+  stripMove(e: PointerEvent, el: HTMLElement) {
+    if (!this.strip) return;
+    const dx = e.clientX - this.strip.x;
+    if (Math.abs(dx) > 5) this.stripMoved = true;
+    el.scrollLeft = this.strip.left - dx;
+  }
+  stripUp() { this.strip = undefined; }
+  onThumbClick(index: number) {
+    if (this.stripMoved) { this.stripMoved = false; return; }
+    this.setGalleryMedia(index);
+  }
 
   getWaUrl(tourName: string): string {
     const msg = this.t().tours.waMsg + tourName;
@@ -332,10 +426,16 @@ export class App {
     if (this.selectedTour()) this.closeTour();
   }
 
+  @HostListener('document:keydown.arrowright')
+  onArrowRight() { if (this.selectedTour()) this.nextGalleryMedia(); }
+
+  @HostListener('document:keydown.arrowleft')
+  onArrowLeft() { if (this.selectedTour()) this.prevGalleryMedia(); }
+
   constructor() {
     setInterval(() => this.nextGuideImage(), 5000);
     setInterval(() => this.nextReviewPage(), 12000);
-    setInterval(() => this.nextTourCard(), 5000);
+    this.startTourAutoplay();
   }
 
   scrollTo(id: string) {
