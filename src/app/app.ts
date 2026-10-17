@@ -294,6 +294,16 @@ export class App {
       ?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }));
   }
 
+  /** Starts the video on arrival; if the browser refuses sound, retries muted (user can unmute). */
+  autoplayVideo(e: Event) {
+    const video = e.target as HTMLVideoElement;
+    if (!video.paused) return;
+    video.play().catch(() => {
+      video.muted = true;
+      video.play().catch(() => {});
+    });
+  }
+
   /** Small version of a gallery photo (generated under a `thumbs/` folder next to it). */
   thumb(src: string): string {
     return src.replace(/([^/]+)$/, 'thumbs/$1').replace(/\.mp4$/, '.jpg');

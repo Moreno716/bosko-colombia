@@ -334,7 +334,8 @@
       <div class="relative rounded-t-3xl overflow-hidden bg-gray-900 h-[58vh] sm:h-[65vh] max-h-[680px] select-none touch-pan-y cursor-grab"
         (pointerdown)="swipeStart($event)" (pointerup)="swipeGalleryEnd($event)">
         @if (currentMedia()?.type === 'video') {
-          <video [src]="currentMedia()!.src" controls playsinline class="w-full h-full object-contain"></video>
+          <video [src]="currentMedia()!.src" controls playsinline autoplay (canplay)="autoplayVideo($event)"
+            class="w-full h-full object-contain"></video>
         } @else {
           <img [src]="currentMedia()?.src" alt="" aria-hidden="true"
             class="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-60" draggable="false">
