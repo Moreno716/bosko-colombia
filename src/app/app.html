@@ -5,7 +5,7 @@
 
     <!-- Logo -->
     <div class="flex items-center space-x-2 cursor-pointer" (click)="scrollTo('home')">
-      <img src="boskoSinFondo.png" alt="Bosko Logo" class="h-10 md:h-12">
+      <img [src]="isScrolled() ? 'bosko_logo/6. Horizontal - BOSKO LOGO.png' : 'bosko_logo/8. Horizontal letra blanca sombra - BOSKO LOGO.png'" alt="Bosko Logo" class="h-10 md:h-12 transition-all duration-300">
     </div>
 
     <!-- Desktop Nav -->
@@ -86,7 +86,7 @@
     <div class="absolute inset-0 bg-black/30"></div>
   </div>
   <div class="relative z-10 text-center text-white px-6 max-w-4xl animate-fade-in">
-    <img src="bosko.png" alt="Bosko Logo" class="mx-auto h-32 md:h-48 mb-8 drop-shadow-2xl">
+    <img src="bosko_logo/5. Letra blanca y sombra - BOSKO LOGO.png" alt="Bosko Logo" class="mx-auto h-40 md:h-56 mb-8">
     <h1 class="text-4xl md:text-7xl font-bold mb-6 text-white drop-shadow-lg">
       {{ t().hero.title }}
     </h1>
@@ -418,7 +418,7 @@
 
       <!-- Logo + tagline + social -->
       <div class="flex-1">
-        <img src="boskoSinFondo.png" alt="Bosko Logo" class="h-12 mb-4 filter brightness-0 invert">
+        <img src="bosko_logo/6. Horizontal - BOSKO LOGO.png" alt="Bosko Logo" class="h-12 mb-4">
         <p class="text-gray-400 text-sm max-w-xs leading-relaxed mb-5">{{ t().footer.tagline }}</p>
         <a href="https://www.instagram.com/boskoecoturismo/" target="_blank"
           class="inline-flex w-10 h-10 bg-white/10 rounded-full items-center justify-center hover:bg-white/20 transition-colors">

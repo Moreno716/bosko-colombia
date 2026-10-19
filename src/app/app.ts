@@ -177,7 +177,7 @@ export class App {
   closeMobileMenu() { this.mobileMenuOpen.set(false); }
 
   currentGuideIndex = signal(0);
-  guideImages = ['guia1.jfif', 'guia2.jpeg'];
+  guideImages = ['guia-jeff/guia1.jfif', 'guia-jeff/guia2.jpeg'];
   nextGuideImage() { this.currentGuideIndex.update(i => (i + 1) % this.guideImages.length); }
   prevGuideImage() { this.currentGuideIndex.update(i => (i - 1 + this.guideImages.length) % this.guideImages.length); }
   setGuideImage(index: number) { this.currentGuideIndex.set(index); }
@@ -185,9 +185,11 @@ export class App {
   tours: Tour[] = [
     {
       name: 'Valle del Cocora',
-      cover: 'valle-del-cocora.png',
-      coverPosition: 'center 45%',
-      media: ['valle-del-cocora.png', 'salento.png', 'carbonera.png'].map(src => ({ type: 'image' as const, src })),
+      cover: 'cocora_valley/cocora3.jpg',
+      coverPosition: 'center top',
+      media: gallery('cocora_valley/cocora', [
+        1, 'v1', 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
+      ]),
       description: {
         en: 'Valle del Cocora 5 km or 11 km: come and visit with us the beautiful Valle del Cocora and the magnificent wax palm of Quindío.',
         es: 'Valle del Cocora 5 km o 11 km: ven a visitar con nosotros el hermoso Valle del Cocora y la imponente palma de cera del Quindío.',
@@ -205,8 +207,9 @@ export class App {
       coverPosition: 'center',
       // Alternates people/landscape with wildlife, never two similar shots in a row.
       media: gallery('carbonera_tochecito/carbonera', [
-        1, 2, 10, 5, 12, 3, 16, 21, 11, 4, 14, 22, 20, 6, 17, 25,
-        15, 8, 23, 33, 19, 27, 7, 13, 26, 32, 24, 9, 29, 30, 28, 18
+        1, 2, 34, 10, 35, 5, 12, 36, 3, 16, 37, 21, 11, 38, 4, 14,
+        39, 22, 20, 40, 6, 17, 41, 25, 15, 42, 8, 23, 43, 33, 19,
+        44, 27, 7, 45, 13, 26, 46, 32, 24, 47, 9, 29, 48, 30, 28, 18
       ]),
       description: {
         en: 'Come and enjoy with us the incredible largest wax palm forest in the world — a truly unique place on our planet.',
